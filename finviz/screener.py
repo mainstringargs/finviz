@@ -136,10 +136,10 @@ class Screener(object):
 
         export_to_db(self.headers, self.data)
 
-    def to_csv(self):
+    def to_csv(self,folder,csvMainName):
         """ Exports the generated table into a CSV file, located in the user's current directory. """
 
-        export_to_csv(self.headers, self.data)
+        export_to_csv(folder,csvMainName,self.headers, self.data)
 
     def get_charts(self, period='d', size='l', chart_type='c', ta='1'):
         """

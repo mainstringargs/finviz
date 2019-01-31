@@ -1,6 +1,7 @@
 import csv
 import sqlite3
 import re
+import time
 
 
 def create_connection():
@@ -15,10 +16,11 @@ def create_connection():
         raise ("An error has occurred while connecting to the database: ", error.args[0])
 
 
-def export_to_csv(headers, data):
+def export_to_csv(folder,csvMainName, headers, data):
     """ Exports the generated table into a CSV file, located in the user's current directory. """
-
-    with open('screener_results.csv', 'w', newline='') as output_file:
+    timestr = time.strftime("%Y%m%d-%H%M%S")
+    
+    with open(folder+"/"+csvMainName+'_'+timestr+'.csv', 'w', newline='') as output_file:
         dict_writer = csv.DictWriter(output_file, headers)
         dict_writer.writeheader()
         dict_writer.writerows(data)
