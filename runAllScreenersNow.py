@@ -6,11 +6,32 @@ import screeners.growthAcceleratedEarnings as growthAcceleratedEarnings
 import screeners.looseCANSLIM as looseCANSLIM
 import screeners.redditCANSLIM as redditCANSLIM
 import screeners.redditMiracleScreener as redditMiracleScreener
+import screeners.bestGrowthStockCandidatesScreener as bestGrowthStockCandidatesScreener
+import screeners.stocksTrendingUpInAStrongChannel as stocksTrendingUpInAStrongChannel
+import screeners.oversoldStocksBouncingAtTechnicalSupport as oversoldStocksBouncingAtTechnicalSupport
 from datetime import datetime
 import time;
 
 def dumpAllScreeners(dirName):
 
+    try:
+        print("Getting CSV for "+oversoldStocksBouncingAtTechnicalSupport.get_screener_name());
+        oversoldStocksBouncingAtTechnicalSupport.dump_to_csv(dirName);
+    except:
+	    print("Exception getting "+oversoldStocksBouncingAtTechnicalSupport.get_screener_name());
+
+    try:
+        print("Getting CSV for "+stocksTrendingUpInAStrongChannel.get_screener_name());
+        stocksTrendingUpInAStrongChannel.dump_to_csv(dirName);
+    except:
+	    print("Exception getting "+stocksTrendingUpInAStrongChannel.get_screener_name());
+		
+    try:
+        print("Getting CSV for "+bestGrowthStockCandidatesScreener.get_screener_name());
+        bestGrowthStockCandidatesScreener.dump_to_csv(dirName);
+    except:
+	    print("Exception getting "+bestGrowthStockCandidatesScreener.get_screener_name());
+		
     try:
         print("Getting CSV for "+movingUpScreener.get_screener_name());
         movingUpScreener.dump_to_csv(dirName);
