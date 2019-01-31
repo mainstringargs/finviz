@@ -9,12 +9,33 @@ import screeners.redditMiracleScreener as redditMiracleScreener
 import screeners.bestGrowthStockCandidatesScreener as bestGrowthStockCandidatesScreener
 import screeners.stocksTrendingUpInAStrongChannel as stocksTrendingUpInAStrongChannel
 import screeners.oversoldStocksBouncingAtTechnicalSupport as oversoldStocksBouncingAtTechnicalSupport
+import screeners.greenPlus15 as greenPlus15
+import screeners.fullCanSlim as fullCanSlim
+import screeners.red as red
 from datetime import datetime
 import time;
 
 
 def dumpAllScreeners(dirName):
 
+    try:
+        print("Getting CSV for "+red.get_screener_name());
+        red.dump_to_csv(dirName);
+    except:
+	    print("Exception getting "+red.get_screener_name());
+		
+    try:
+        print("Getting CSV for "+fullCanSlim.get_screener_name());
+        fullCanSlim.dump_to_csv(dirName);
+    except:
+	    print("Exception getting "+fullCanSlim.get_screener_name());
+
+    try:
+        print("Getting CSV for "+greenPlus15.get_screener_name());
+        greenPlus15.dump_to_csv(dirName);
+    except:
+	    print("Exception getting "+greenPlus15.get_screener_name());
+		
     try:
         print("Getting CSV for "+oversoldStocksBouncingAtTechnicalSupport.get_screener_name());
         oversoldStocksBouncingAtTechnicalSupport.dump_to_csv(dirName);
