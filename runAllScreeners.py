@@ -106,19 +106,28 @@ def dumpAllScreeners(dirName):
 
 dirName = "screenerOutput";
 
-dumpedDataToday = False
+dumpedDataAfternoon = False
+dumpedDataMorning = False
 
 while True:
     now = datetime.now().strftime('%H%M')
     weekday = datetime.now().isoweekday()
 
-    if (weekday <= 5 and now < '0800' and dumpedDataToday):	
-        print("Flipping boolean");
-        dumpedDataToday = False
+    if (weekday <= 5 and now < '0800' and dumpedDataAfternoon):	
+        print("Flipping Afternoon boolean");
+        dumpedDataAfternoon = False
 	
-    if (not dumpedDataToday and weekday <= 5 and now >= '1505'):
+    if (not dumpedDataAfternoon and weekday <= 5 and now >= '1505' and now <= '1515'):
         dumpAllScreeners(dirName);
-        dumpedDataToday=True
+        dumpedDataAfternoon=True
+		
+    if (weekday <= 5 and now > '0820' and now < '0830' and not dumpedDataMorning):
+        dumpAllScreeners(dirName);
+        dumpedDataMorning=True	
+	
+    if (dumpedDataMorning and weekday <= 5 and now >= '1505'):
+        print("Flipping Morning boolean");
+        dumpedDataMorning = False		
 	
     print("Sleeping at "+str(now) + " "+str(weekday));	
     time.sleep(60 * 5)
