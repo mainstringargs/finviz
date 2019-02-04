@@ -54,11 +54,11 @@ def dumpAllScreeners(dirName):
     except:
 	    print("Exception getting "+bestGrowthStockCandidatesScreener.get_screener_name());
 		
-    try:
-        print("Getting CSV for "+movingUpScreener.get_screener_name());
-        movingUpScreener.dump_to_csv(dirName);
-    except:
-	    print("Exception getting "+movingUpScreener.get_screener_name());
+  #  try:
+   #     print("Getting CSV for "+movingUpScreener.get_screener_name());
+   #     movingUpScreener.dump_to_csv(dirName);
+   # except:
+	#    print("Exception getting "+movingUpScreener.get_screener_name());
 
     try:
         print("Getting CSV for "+lowEndOfUpTrend.get_screener_name());
