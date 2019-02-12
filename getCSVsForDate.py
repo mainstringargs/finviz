@@ -33,7 +33,7 @@ with open(os.path.join(dirName, outputFile),'w', newline='') as outcsv:
         if file.endswith(".csv") and inputDate.replace('-','') in file:
 	        screenerName = file.split('_')[0];
 	        print("");				
-	        print("ScreenerName "+screenerName);
+	        print("ScreenerName "+screenerName + " File "+file);
 	        print("");		
 	        frame = pd.read_csv(os.path.join(dir, file))
 	        frame = frame.sort_values('Ticker')
