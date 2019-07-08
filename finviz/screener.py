@@ -107,6 +107,16 @@ class Screener(object):
 
         return create_table_string(table_list)
 
+    def get_table_list(self):
+        """ Returns a readable representation of a table. """
+
+        table_list = []
+
+        for row in self.data:
+            table_list.append([row[col] or '' for col in self.headers])
+
+        return (table_list)
+        
     def __repr__(self):
         """ Returns a string representation of the parameter's values. """
 
@@ -140,6 +150,21 @@ class Screener(object):
         """ Exports the generated table into a CSV file, located in the user's current directory. """
 
         export_to_csv(folder,csvMainName,self.headers, self.data)
+        
+    def to_google_csv(self,folder,csvMainName):
+        """ Exports the generated table into a CSV file, located in the user's current directory. """
+        
+        self.headers.append('Current Price');
+        self.headers.append('Current Price Difference');
+        firstRow = 2;
+        for data in self.data: 
+            ticker = (data['Ticker']) 
+            data['Current Price'] = "=GOOGLEFINANCE(\""+ticker+"\")";
+            data['Current Price Difference'] = "=I"+str(firstRow)+"-L"+str(firstRow);
+            firstRow+=1;
+
+        export_to_csv(folder,csvMainName,self.headers, self.data)
+
 
     def get_charts(self, period='d', size='l', chart_type='c', ta='1'):
         """
